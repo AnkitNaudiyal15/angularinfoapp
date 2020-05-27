@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class InfonavigatinComponent {
 
   dashboard:boolean;
-  table:boolean;
+  table : boolean;
   calculator:boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
