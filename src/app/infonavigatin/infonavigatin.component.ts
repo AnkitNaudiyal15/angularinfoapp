@@ -13,6 +13,7 @@ export class InfonavigatinComponent {
 
   dashboard:boolean;
   table:boolean;
+  calculator:boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -23,7 +24,7 @@ export class InfonavigatinComponent {
   constructor(private breakpointObserver: BreakpointObserver,private router:Router, ) {}
 
   ngOnInit(): void {
-    this.dashboard = true;
+    this.calculator = true;
   }
   logoutUser(){
     this.router.navigate(["login"]);
@@ -32,10 +33,18 @@ export class InfonavigatinComponent {
   dashboardSelection(){
     this.dashboard = true;
     this.table = false;
+    this.calculator = false;
   }
 
   tableSelection(){
     this.dashboard = false;
     this.table = true;
+    this.calculator = false;
+  }
+
+  calculatorSelection(){
+    this.dashboard = false;
+    this.table = false;
+    this.calculator = true;
   }
 }

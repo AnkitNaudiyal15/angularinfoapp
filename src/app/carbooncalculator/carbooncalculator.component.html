@@ -1,0 +1,53 @@
+<mat-tab-group>
+    <mat-tab label="Get-Started"> 
+    
+
+
+        <mat-grid-list cols="2" rowHeight="350px">
+            <mat-grid-tile  [colspan]="2" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-header>
+                  <mat-card-title>
+                    Get-Started   
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                  <div>
+                    <form class="example-form">
+                       
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Enter your location</mat-label>
+                          <input matInput placeholder="Ex. Delhi"  [(ngModel)]="location" name="location" required>
+                        </mat-form-field>
+            
+                        <!-- <mat-form-field class="example-full-width"> -->
+                            <mat-label>How many people live in your household</mat-label>
+                            <mat-slider
+                            thumbLabel
+                            [displayWith]="formatLabel"
+                            tickInterval="1"
+                            min="1"
+                            max="4"></mat-slider>
+                          
+                          <!-- </mat-form-field> -->
+                      
+                        <!-- <mat-form-field class="example-full-width">
+                          <mat-label>Leave a comment</mat-label>
+                          <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                        </mat-form-field> -->
+                      </form></div>
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+
+        
+    </mat-tab>
+    <mat-tab label="Travel"> Content 2 </mat-tab>
+    <mat-tab label="Home"> Content 3 </mat-tab>
+    <mat-tab label="Food"> Content 3 </mat-tab>
+    <mat-tab label="Shopping"> Content 3 </mat-tab>
+    <mat-tab label="Shopping"> Your Footprint </mat-tab>
+    <mat-tab label="Take Action"> Take action </mat-tab>
+  </mat-tab-group>

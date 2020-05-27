@@ -5,8 +5,10 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
+      <a mat-list-item (click)="calculatorSelection()">Carboon Calculator</a>
       <a mat-list-item (click)="dashboardSelection()">Home</a>
       <a mat-list-item (click)="tableSelection()">Users</a>
+     
       <!-- <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a> -->
     </mat-nav-list>
@@ -39,6 +41,7 @@
     <!-- Add Content Here -->
     <app-infodashboard *ngIf="dashboard"></app-infodashboard>
     <app-table  *ngIf="table"></app-table>
+    <app-carbooncalculator  *ngIf="calculator"></app-carbooncalculator>
    
   </mat-sidenav-content>
 </mat-sidenav-container>

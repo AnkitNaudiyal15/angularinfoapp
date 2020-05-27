@@ -20,6 +20,7 @@ import { LoginComponentComponent } from './login-component/login-component.compo
 import {HomeComponent} from './home/home.component';
 import {MaterialModule } from './material.module';
 
+
 import {Router} from '@angular/router';
 
 
@@ -29,6 +30,7 @@ import { TableComponent } from './table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { CarbooncalculatorComponent } from './carbooncalculator/carbooncalculator.component';
 
 
 
@@ -43,7 +45,8 @@ import { MatSortModule } from '@angular/material/sort';
     HomeComponent,
     UserComponent,
     UserinfoComponent,
-    TableComponent
+    TableComponent,
+    CarbooncalculatorComponent
   ],
   imports: [
     BrowserModule,
