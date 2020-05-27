@@ -1,8 +1,12 @@
 <mat-tab-group>
+
+    <mat-tab label="upload">
+        <h1>file upload</h1>
+        <input type="file" (change)="onFileSelected($event)">
+        <input type="button" (click)="onFileUpload()" value="upload file">
+    </mat-tab>
+
     <mat-tab label="Get-Started"> 
-    
-
-
         <mat-grid-list cols="2" rowHeight="350px">
             <mat-grid-tile  [colspan]="2" [rowspan]="1">
               <mat-card class="dashboard-card">

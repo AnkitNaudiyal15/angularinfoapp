@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-//import { NgModule } from '@angular/core';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import {HomeComponent} from './home/home.component';
 import {MaterialModule } from './material.module';
-
+// import { HttpClient } from '@angular/common/http';
 
 import {Router} from '@angular/router';
 
@@ -32,7 +30,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CarbooncalculatorComponent } from './carbooncalculator/carbooncalculator.component';
 
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -64,7 +62,8 @@ import { CarbooncalculatorComponent } from './carbooncalculator/carbooncalculato
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+     HttpClientModule,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

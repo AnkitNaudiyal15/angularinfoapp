@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-carbooncalculator',
@@ -6,17 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carbooncalculator.component.sass']
 })
 export class CarbooncalculatorComponent implements OnInit {
+
  location:string;
-  constructor() { }
+ selectedFile: File = null;
+
+  constructor( private http: HttpClient) { }
 
   ngOnInit(): void {
   }
-  formatLabel(value: number) {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
-    }
 
-    return value;
+  onFileSelected(event){
+    this.selectedFile = <File>event.target.files[0];
+    console.log(event);
   }
-
+  onFileUpload(){
+    const fd = new FormData();
+    fd.append('mylife',this.selectedFile,this.selectedFile.name);
+    this.http.post('http://httpbin.org/post',fd)
+    .subscribe(res=>{
+        console.log(res);
+    });
+  }
 }
