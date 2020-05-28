@@ -32,6 +32,7 @@ import { CarbooncalculatorComponent } from './carbooncalculator/carbooncalculato
 
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatSortModule,
      HttpClientModule,
+     MatSliderModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
