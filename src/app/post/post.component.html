@@ -1,0 +1,44 @@
+<mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Create Post
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <div>
+
+            <form #f="ngForm" (ngSubmit)="onFileUpload()" novalidate>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Enter post title</mat-label>
+                <input matInput placeholder="Ex. Delhi" [(ngModel)]="post_title" name="post_title"  required>
+              </mat-form-field>
+            </div>
+            
+
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Ex. description..." [(ngModel)]="post_description" name="post_description" required>
+                </mat-form-field> ></textarea>
+              </mat-form-field>
+            </div>
+    
+            <div class="example-full-width">
+                <div>
+                    <mat-label>Post image</mat-label>
+                </div>
+                <input type="file" (change)="onFileSelected($event)" required>
+            </div>
+
+            <mat-card-actions>
+              <button mat-raised-button type="submit"  color="primary">Create Post</button>
+            </mat-card-actions>
+          </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

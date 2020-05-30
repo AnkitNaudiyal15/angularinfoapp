@@ -35,26 +35,40 @@
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
-
-
-
   </mat-tab>
-
-
   <mat-tab label="Travel">
-    <mat-card-actions>
-      <button mat-raised-button (click)="previousStep()" color="primary">Previous</button>
-    </mat-card-actions>
-    <mat-card-actions>
-      <button mat-raised-button (click)="nextStep()" color="primary">Next</button>
-    </mat-card-actions>
+    <mat-grid-list cols="2" rowHeight="350px">
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Travel
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <mat-form-field class="example-full-width">
+              <mat-label>Public Transit</mat-label>
+              <input matInput placeholder="miles/year" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Air Travel</mat-label>
+              <input matInput placeholder="miles/year" required>
+            </mat-form-field>
+            <mat-card-actions>
+              <button mat-raised-button (o)="previousStep()" color="primary">Previous</button>
+              <button mat-raised-button (o)="nextStep()" color="primary">Next</button>
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-tab>
   <mat-tab label="Home"> Content 3 </mat-tab>
   <mat-tab label="Food"> Content 3 </mat-tab>
   <mat-tab label="Shopping"> Content 3 </mat-tab>
   <mat-tab label="Shopping"> Your Footprint </mat-tab>
   <mat-tab label="Take Action"> Take action </mat-tab>
-
+  
   <mat-tab label="upload">
     <h1>file upload</h1>
     <input type="file" (change)="onFileSelected($event)">
