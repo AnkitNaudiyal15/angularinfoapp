@@ -31,7 +31,7 @@ postRoute.post('/add-post',upload.single('post_image'),function(req, res, next) 
 console.log(req.body);
   const post = new Post({
     post_title : req.body.post_title,
-    post_discription: req.body.post_discription,
+    post_description: req.body.post_description,
     post_image : filepath
       });
       
