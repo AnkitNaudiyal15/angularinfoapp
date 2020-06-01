@@ -3,7 +3,24 @@ let express = require('express'),
   mongoose = require('mongoose'),
   cors = require('cors'),
   bodyParser = require('body-parser'),
-  dataBaseConfig = require('./database/db');
+  dataBaseConfig = require('./database/db'),
+  multer = require('multer');
+  let router = express.Router();
+  let createError = require('http-errors');
+
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
+  
+  const upload = multer({ storage: storage })
+
+
 
 // Connecting mongoDB
 mongoose.Promise = global.Promise;
@@ -22,40 +39,40 @@ mongoose.connect(dataBaseConfig.db, {
 // Set up express js port
 const postRoute = require('./routes/post.route')
 
+
+
+
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
 
-
-
-
-  
-
-// // Setting up static directory
- app.use(cors());
-
-
-
-// RESTful API root
-app.use('/api', postRoute)
 
 
 
 // app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-//   });
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
-  
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+   extended: false
+}));
+
+
+  // RESTful API root
+  app.use('/api', postRoute);
+
+
 // PORT
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log('Connected to port ' + port)
-})
+});
 
 // Find 404 and hand over to error handler
 app.use((req, res, next) => {
@@ -67,9 +84,31 @@ app.get('/', (req, res) => {
   res.send('invaild endpoint');
 });
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
+// // Index Route
+// app.post('/',upload.single('image'), (req, res) => {
+//   res.send('invaild endpoint');
 // });
+
+
+// // Index Route
+// app.post('/add-post',upload.single('image') ,(req, res, next) => {
+//  // req.body.post_image=req.file.filename;
+
+// //  if (!files) {
+// //   const error = new Error('Please choose files')
+// //   error.httpStatusCode = 400
+// //   return next(error)
+// // }
+
+
+
+
+//   console.log(req.file);
+//   //console.log('ankit');
+// });
+
+
+
 
 // error handler
 app.use(function (err, req, res, next) {

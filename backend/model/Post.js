@@ -8,6 +8,9 @@ let Post = new Schema({
   },
   post_description: {
     type: String
+  },
+  post_image: {
+    type: String
   }
 }, {
   collection: 'posts'

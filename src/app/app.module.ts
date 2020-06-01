@@ -35,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSliderModule} from '@angular/material/slider';
 import { PostComponent } from './post/post.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
