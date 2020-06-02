@@ -15,10 +15,7 @@ export class PostService {
   private apiServer = "http://localhost:8000/api";
   httpOptions = {
     headers: new HttpHeaders({
-       //'Content-Type': 'application/json'
-      //  'Accept':'application/json',
-      // 'Access-Control-Allow-Origin': 'http://localhost:4200',
-      // 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT'
+       'Content-Type': 'application/json'
     })
   }
 
@@ -26,7 +23,16 @@ export class PostService {
   
 
   create(postdata): Observable<Postdata> {
-    return this.httpClient.post<Postdata>(this.apiServer + '/add-post', postdata, this.httpOptions)
+    return this.httpClient.post<Postdata>(this.apiServer + '/add-post', postdata)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }  
+
+
+
+  get(): Observable<Postdata> {
+    return this.httpClient.get<Postdata>(this.apiServer + '/post', this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

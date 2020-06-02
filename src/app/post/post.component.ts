@@ -23,11 +23,13 @@ export class PostComponent implements OnInit {
   selectedFile: File = null;
   post_title: string;
   post_description: string;
+  posts : any;
 
   postForm: FormGroup;
 
   ngOnInit(){
     this.mainForm();
+    this.onLoadPostList();
   }
 
   onFileSelected(event) {
@@ -51,8 +53,19 @@ export class PostComponent implements OnInit {
     fd.append('post_title', this.post_title);
     fd.append('post_description', this.post_description);
     this.postService.create(fd).subscribe(res => {
-        console.log('Product created!');
+        //console.log(res.data);
+        this.posts.push(res);
 
     });
+
+ 
+    //this.onLoadPostList();
+  }
+
+  onLoadPostList(){
+     this.postService.get().subscribe(res => {
+       this.posts=res;
+       console.log(this.posts);
+  });
   }
 }

@@ -12,62 +12,52 @@ var storage = multer.diskStorage({
     cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix)
+    //let fileextention = req.file.originalname.split('.')[1];
+    ext = file.originalname.substring(file.originalname.lastIndexOf('.'), file.originalname.length);
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)+''+ ext;
+    cb(null, file.fieldname + '-' + uniqueSuffix )
   }
 })
 
 
-const upload = multer({ storage: storage })
+const upload = multer({
+  storage: storage
+})
 //Add post
 
-postRoute.post('/add-post',upload.single('post_image'),function(req, res, next) {
+postRoute.post('/add-post', upload.single('post_image'), function (req, res, next) {
 
-  if(!req.file) {
+  if (!req.file) {
     res.status(500);
     return next(err);
   }
-  filepath = req.file.path+''+req.file.originalname.split('.')[1];
-console.log(req.body);
+  filepath = req.file.path ;
   const post = new Post({
-    post_title : req.body.post_title,
+    post_title: req.body.post_title,
     post_description: req.body.post_description,
-    post_image : filepath
-      });
-      
-      post.save();
+    post_image: filepath
+  });
 
-  res.json({ fileUrl: 'http://127.0.0.1:8000/uploads/' +filepath });
- });
+  post.save();
+
+  res.json(post);
+});
 
 
 
-// postRoute.route('/add-post').post((req, res, next) => {
-
-//   const post = new Post({
-// post_title = req.body.post_title,
-// post_description = req.body.post_description,
-// post_image = req.body.post_description,
-//   });
-//   // Post.create(req.body, (error, data) => {
-//   //   if (error) {
-//   //     return next(error)
-//   //   } else {
-//   //     res.json(data)
-//   //   }
-//   // });
-// });
 
 
 
 // Get all post
 postRoute.route('/post').get((req, res) => {
-    Post.find((error, data) => {
+  Post.find((error, data) => {
     if (error) {
       return next(error)
     } else {
       res.json(data)
     }
+  }).sort({
+    "_id": -1
   })
 })
 
@@ -99,16 +89,16 @@ postRoute.route('/post').get((req, res) => {
 // })
 
 // // Delete student
-// studentRoute.route('/delete-student/:id').delete((req, res, next) => {
-//   Student.findByIdAndRemove(req.params.id, (error, data) => {
-//     if (error) {
-//       return next(error);
-//     } else {
-//       res.status(200).json({
-//         msg: data
-//       })
-//     }
-//   })
-// })
+postRoute.route('/delete-post/:id').delete((req, res, next) => {
+  Post.findByIdAndRemove(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: data
+      })
+    }
+  })
+})
 
 module.exports = postRoute;
